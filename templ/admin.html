@@ -38,7 +38,7 @@
             <option value="SocialScience">SocialScience</option>
         </select>
 
-        <input type="file" name="tphoto">
+        <input type="file" name="tphoto" id="file-input">
         <button id="sub">Submit</button>
     </form>
 
@@ -83,6 +83,23 @@ Toast.fire({
 
 window.location.href = "/"
 }
+let fileInp = document.getElementById("file-input")
+
+fileInp.addEventListener("change" , function(){
+    let file = fileInp.files[0]
+    if(file.size>7340032){
+       Swal.fire({
+    position: "top-end",
+    icon: "error",
+    title: "Your FIle is Must Less than 7 MB",
+    showConfirmButton: false,
+    timer: 2500
+ });
+   
+   fileInp.value=""
+    }
+})
+
 </script>
 </body>
 </html>

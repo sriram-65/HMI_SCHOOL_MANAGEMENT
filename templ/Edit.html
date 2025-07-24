@@ -98,12 +98,31 @@
     </select>
 
     <small>If you don't select a new photo, the old one will be kept</small>
-    <input type="file" name="newphoto">
+    <input type="file" name="newphoto" id="file-input">
 
     <button id="sub">Update Teacher</button>
   </form>
 
   <img src="{{T.Teacher_photo}}" alt="Teacher Photo">
   <p>Created on: {{T.Created_at}}</p>
+
+  <script>
+    let fileInp = document.getElementById("file-input")
+
+fileInp.addEventListener("change" , function(){
+    let file = fileInp.files[0]
+    if(file.size>7340032){
+       Swal.fire({
+    position: "top-end",
+    icon: "error",
+    title: "Your FIle is Must Less than 7 MB",
+    showConfirmButton: false,
+    timer: 2500
+ });
+   
+   fileInp.value=""
+    }
+})
+  </script>
 </body>
 </html>
