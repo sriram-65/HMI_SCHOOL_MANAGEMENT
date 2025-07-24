@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  margin:0;
+  padding:0;
+}
+
+nav{
+    background-color: brown;
+    height: 80px !important;
+}
+nav .logo{
+    margin-left: 20px !important;
+}
+
+nav .logo a{
+    font-size: 27px;
+    color:white !important;
+}
+nav .links{
+    margin-top: 26px;
+    margin-right: 40px;
+    
+}
+
+nav .links a{
+    color:white !important;
+}
+
+nav .links a:hover{
+    opacity: 0.8;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap:20px;
+}
+
+form input , select , input[type="file"]{
+    width:50%;
+    padding:20px 20px 20px;
+    font-size: 17px;
+    border: 1px solid #ccc;
+    
+}
+
+form select{
+    width:53%;
+}
+
+form button{
+    width:30%;
+    padding:20px 20px 20px;
+    border:none;
+    outline: none;
+    background-color: black;
+    color:white;
+    cursor:pointer;
+ 
+}
+
+
+form button:hover{
+    opacity: 0.6;
+}
+
+.overlay{
+    width:100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.795);
+    position: absolute;
+    z-index: 100;
+    top:0;
+    display: none;
+}
+
+.popup{
+    max-width: 600px;
+    width:500px;
+    padding:30px 30px 30px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50% , -50%);
+    z-index: 1000;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: 0.7s;
+    display: none;
+}
+
+

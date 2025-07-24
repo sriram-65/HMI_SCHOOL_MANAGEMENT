@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin HMI - SCHOOL</title>
+    <link rel="stylesheet" href="{{url_for('static' , filename='style.css')}}">
+    <link rel="stylesheet" href="https://sriram-65.github.io/kiruma-ui/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+
+    <nav id="navbar" class="navbar">
+
+        <div class="logo">
+            <a href="/">HMI</a>
+        </div>
+        <div class="links">
+            <a href="/">Add Teachers</a>
+            <a href="/hmi-admin-school/teachers">Show Teachers</a>
+            <a href="#">Settings</a>
+        </div>
+    </nav>
+
+
+    <form method="POST" enctype="multipart/form-data" class="teacher-upload">
+        <h1>Add Techers Deatils</h1>
+        <input type="text" name="name" placeholder="Enter name">
+        <input type="email" name="email" placeholder="Enter Email">
+        <input type="number" name="phoneNo" placeholder="Enter Phone Number">
+        <select name="whatTeach">
+            <option selected disabled>Select</option>
+            <option value="Tamil">Tamil</option>
+            <option value="English">English</option>
+            <option value="Maths">Maths</option>
+            <option value="Science">Science</option>
+            <option value="SocialScience">SocialScience</option>
+        </select>
+
+        <input type="file" name="tphoto">
+        <button id="sub">Submit</button>
+    </form>
+
+<script src="{{url_for('static' ,filename='script.js')}}" type="module"></script>
+
+<script>
+let er = "{{er}}" 
+let suess = '{{Sucess}}'
+
+if (er){
+ Swal.fire({
+    position: "top-end",
+    icon: "error",
+    title: er,
+    showConfirmButton: false,
+    timer: 2000
+ });
+ setTimeout(function(){
+  window.location.href = "/"
+ } , 2000)
+
+}
+
+else if (suess){
+
+ const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+ });
+
+Toast.fire({
+  icon: "success",
+  title: suess
+});
+
+window.location.href = "/"
+}
+</script>
+</body>
+</html>

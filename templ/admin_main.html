@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --error: #ff7675;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--light);
+        }
+        
+        .access-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        input:focus {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        button {
+            background: var(--light);
+            color: var(--primary);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .error-message {
+            margin-top: 20px;
+            color: var(--error);
+            font-weight: 600;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        
+        .security-tip {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="access-container">
+        <div class="lock-icon">🔒</div>
+        <h1>SECURE ACCESS</h1>
+        <form action="/" method="POST">
+            <div class="input-group">
+                <input type="text" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Authenticate</button>
+        </form>
+
+        {% if e %}
+          <div class="error-message">{{e}}</div>
+        {% endif %}
+        
+        <div class="security-tip">
+            For security reasons, please keep your password confidential.
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('input').addEventListener('focus', function() {
+            this.parentNode.style.transform = 'scale(1.02)';
+        });
+        
+        document.querySelector('input').addEventListener('blur', function() {
+            this.parentNode.style.transform = 'scale(1)';
+        });
+        
+ 
+        const button = document.querySelector('button');
+        button.addEventListener('mouseenter', () => {
+            button.style.background = 'white';
+            button.style.color = 'var(--primary)';
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            button.style.background = 'var(--light)';
+            button.style.color = 'var(--primary)';
+        });
+    </script>
+</body>
+</html>

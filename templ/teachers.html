@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teachers</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="https://sriram-65.github.io/kiruma-ui/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      background: #f5f7fb;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #333;
+    }
+
+    .teacher-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .teacher-card {
+      background: white;
+      width: 300px;
+      border-radius: 16px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .teacher-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .teacher-card img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .teacher-card h3 {
+      margin: 10px 0 5px;
+      color: #222;
+    }
+
+    .teacher-card p {
+      margin: 4px 0;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .card-actions {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .card-actions form button {
+      padding: 8px 14px;
+      width:100%;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .card-actions .delete-btn {
+      background: #ff4d4f;
+      color: white;
+    }
+
+    .card-actions .delete-btn:hover {
+      background: #d9363e;
+    }
+
+    .card-actions .edit-btn {
+      width:100px;
+      background: #1890ff;
+      color: white;
+    }
+    .card-actions a{
+      color:white;
+      text-decoration: none;
+    }
+    .card-actions .edit-btn:hover {
+      background: #147cd3;
+   
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar" class="navbar">
+    <div class="logo">
+      <a href="/">HMI</a>
+    </div>
+    <div class="links">
+      <a href="/">Add Teachers</a>
+      <a href="/hmi-admin-school/teachers">Show Teachers</a>
+      <a href="#">Settings</a>
+    </div>
+  </nav>
+
+  <h1>All Teachers ( {{C}} )</h1>
+
+  <div class="teacher-container">
+    {% for i in T %}
+    <div class="teacher-card">
+      
+      <img src="{{ i.Teacher_photo }}" alt="Photo of {{ i.Teacher_name }}">
+
+      <h3>{{ i.Teacher_name }}</h3>
+      <p><strong>Email:</strong> {{ i.Teacher_email }}</p>
+      <p><strong>Phone:</strong> {{ i.Teacher_phone_no }}</p>
+      <p><strong>Subject:</strong> {{ i.Teacher_major_subject }}</p>
+      <p><strong>Joined:</strong> {{ i.Created_at }}</p>
+      <div class="card-actions">
+        <form action="{{url_for('route_home.Delete_teacher' , id=i._id)}}" method="POST" onsubmit="return confirm('Are You Sure Want to delete this Teacher ?')">
+             <button class="btn btn-dark">Delete</button>
+        </form>
+        <form>
+               <button class="btn btn-danger"><a href="/edit/teacher/{{i._id}}">Edit</a></button>
+        </form>
+          
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+</body>
+</html>

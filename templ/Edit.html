@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Teacher Info</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="https://sriram-65.github.io/kiruma-ui/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      background: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    .teacher-upload {
+      background: #ffffff;
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .teacher-upload h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .teacher-upload input,
+    .teacher-upload select {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .teacher-upload small {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #666;
+    }
+
+    .teacher-upload button {
+      width: 100%;
+      background: #4a90e2;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .teacher-upload button:hover {
+      background: #3a7bd5;
+    }
+
+    img {
+      margin-top: 2rem;
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 3px solid #4a90e2;
+    }
+
+    p {
+      color: #444;
+      margin-top: 1rem;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <form action="{{ url_for('route_home.Edit_Teacher', id=T._id) }}" method="POST" enctype="multipart/form-data" class="teacher-upload">
+    <h1>Edit Teacher Details</h1>
+    <input type="text" name="newtname" value="{{T.Teacher_name}}" placeholder="Teacher Name" required>
+    <input type="email" name="newtemail" value="{{T.Teacher_email}}" placeholder="Teacher Email" required>
+    <input type="number" name="newphone" value="{{T.Teacher_phone_no}}" placeholder="Phone Number" required>
+
+    <select name="newwhat">
+      <option value="{{T.Teacher_major_subject}}">{{T.Teacher_major_subject}}</option>
+      <option value="Tamil">Tamil</option>
+      <option value="English">English</option>
+      <option value="Maths">Maths</option>
+      <option value="Science">Science</option>
+      <option value="SocialScience">Social Science</option>
+    </select>
+
+    <small>If you don't select a new photo, the old one will be kept</small>
+    <input type="file" name="newphoto">
+
+    <button id="sub">Update Teacher</button>
+  </form>
+
+  <img src="{{T.Teacher_photo}}" alt="Teacher Photo">
+  <p>Created on: {{T.Created_at}}</p>
+</body>
+</html>
